@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">MAX HOTPSOT NETWORK</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li class="li-active"><a href="login.html">HOME</a></li>
+                <li><a href="paket.html">PACKET</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="https://api.whatsapp.com/send?phone=*5**4**84&text=Kak%20Mohon%20Info%20Seputar%20Hotspot%20dong.!">CS : 0500000084</a></li>
+            </ul>
+        </nav>
+        $(if chap-id)
+    <form name="sendin" action="$(link-login-only)" method="post">
+        <input type="hidden" name="username" />
+        <input type="hidden" name="password" />
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="popup" value="true" />
+    </form>
+
+    <script type="text/javascript" src="md5.js"></script>
+    <script type="text/javascript">
+        function doLogin() {
+            document.sendin.username.value = document.login.username.value;
+            document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value +
+                '$(chap-challenge)');
+            document.sendin.submit();
+            return false;
+        }
+    </script>
+    $(endif)
+        <div class="main" id="main">
+            <div class="header">
+                <img src="img/logo.png" width="350">
+                <p>Please Choose Your Login Method</p>
+            </div>
+            <div class="login-form">
+                <h1>| Please Choose Your Login Method |</h1>
+                <div class="box">
+                    <button id="btnvrc" class="btn-top btn-active"  onclick="voucher();">VOUCHER</button>
+                    <button id="btnmem" class="btn-top" onclick="member();">MEMBER</button>
+                </div>
+                <div class="box" id="infologin"></div>
+
+                <form autocomplete="off" name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()"
+                $(endif)>
+                    <input type="hidden" name="dst" value="$(link-orig)" />
+                    <input type="hidden" name="popup" value="true" />
+                    <input class="username" name="username" type="text" value="$(username)" />
+                    <input class="username" name="password" placeholder="Password" type="hidden" />
+                    <button class="log-in" type="submit">ACTIVATE VOUCHER</button>
+                </form>
+
+                <p>" Always pay attention to the code you enter <br>Make sure it matches the voucher paper you have "</p>
+            </div>
+            $(if trial == 'yes')
+            <div class="box">Try for free <a style="text-decoration: underline; color:#fff;" href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">klik
+                    di sini</a></div>
+            $(endif)
+
+            $(if error)<div class="notice">$(error)</div>$(endif)
+
+            
+        </div>
+        
+    </div>
+
+    <script type="text/javascript">
+        var hostname = window.location.hostname;
+        document.getElementById('title').innerHTML = hostname  + ">MAX HOTPSOT NETWORK";
+        
+        document.login.username.focus();
+        
+        var infologin = document.getElementById('infologin');
+        infologin.innerHTML = "Enter the Voucher Code Then Click Login.";
+        
+        // login page 2 mode by maxauh-Shez
+        var username = document.login.username;
+        var password = document.login.password;
+        
+        username.placeholder = "Code Voucher";
+        
+        // set password = username
+        function setpass() {
+            var user = username.value
+            //user = user.toLowerCase();
+            username.value = user;
+            password.value = user;
+        }
+        
+        username.onkeyup = setpass;
+        
+        // change to voucher mode
+        function voucher() {
+            username.focus();
+            username.onkeyup = setpass;
+            username.placeholder = "Code Voucher";
+            password.type = "hidden";
+            infologin.innerHTML = "Enter the Voucher Code Then Click Login.";
+        }
+        
+        // change to member mode
+        function member() {
+            username.focus();
+            username.onkeyup = "";
+            username.placeholder = "Username";
+            password.type = "password";
+            infologin.innerHTML = "Enter your Username and Password, then click Login.";
+        }
+        </script>
+</body>
+</html>
